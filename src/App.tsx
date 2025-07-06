@@ -51,7 +51,7 @@ export default function App() {
       className="flex font-myfont flex-col overflow-hidden items-center justify-center min-h-screen bg-gray-50 px-4 py-10"
       style={{ fontFamily: "'Vazirmatn', sans-serif" }}
     >
-      <div className="font-myfont w-full relative max-w-3xl min-h-[70vh] bg-white rounded-xl shadow-lg p-8">
+      <div className="font-myfont w-full relative max-w-3xl min-h-[50vh] lg:min-h-[70vh] bg-white rounded-xl shadow-lg p-8">
         <h1 className="text-3xl lg:text-4xl font-extrabold mb-8 text-center text-blue-600 select-none">
          سرچ هوشــــمند
         </h1>
@@ -94,7 +94,7 @@ export default function App() {
 
       <button
         onClick={promptInstall}
-        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
+        className="fixed bottom-14 right-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
       >
         نصب PWA
       </button>

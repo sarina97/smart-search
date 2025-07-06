@@ -16,7 +16,7 @@ export default function ScrollArrows({
       <button
         onClick={onPrev}
         disabled={currentIndex === 0}
-        className="absolute bottom-2 lg:top-1/2 right-32 lg:right-10 transform -translate-y-1/2 p-2 bg-blue-500 text-white rounded disabled:opacity-40"
+        className="absolute -bottom-20 lg:bottom-1/2  right-32 lg:right-10 transform -translate-y-1/2 p-2 bg-blue-500 text-white rounded disabled:opacity-40"
         aria-label="نتیجه قبلی"
       >
         <svg
@@ -37,7 +37,7 @@ export default function ScrollArrows({
       <button
         onClick={onNext}
         disabled={currentIndex === maxIndex}
-        className="absolute bottom-2 lg:top-1/2 left-32 lg:left-10 transform -translate-y-1/2 p-2 bg-blue-500 text-white rounded disabled:opacity-40"
+        className="absolute -bottom-20 lg:bottom-1/2 left-32 lg:left-10 transform -translate-y-1/2 p-2 bg-blue-500 text-white rounded disabled:opacity-40"
         aria-label="نتیجه بعدی"
       >
         <svg
