@@ -1,0 +1,21 @@
+{
+  "name": "Smart Search Reader",
+  "short_name": "SearchReader",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "description": "اپلیکیشن جستجوی هوشمند با قابلیت استفاده آفلاین",
+  "icons": [
+    {
+      "src": "/icon1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-pwa.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
