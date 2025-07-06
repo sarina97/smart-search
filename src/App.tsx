@@ -53,7 +53,7 @@ export default function App() {
     >
       <div className="font-myfont w-full relative max-w-3xl min-h-[50vh] lg:min-h-[70vh] bg-white rounded-xl shadow-lg p-8">
         <h1 className="text-3xl lg:text-4xl font-extrabold mb-8 text-center text-blue-600 select-none">
-         سرچ هوشــــمند
+          سرچ هوشــــمند
         </h1>
 
         <SearchBar
@@ -67,17 +67,21 @@ export default function App() {
             <Loader />
           </div>
         ) : (
-          <SearchResults
-            results={results}
-            highlight={debouncedQuery}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-            onSelect={(text) => {
-              setQuery(text);
-              setCurrentIndex(0);
-              setShowResults(false);
-            }}
-          />
+          <div className="">
+            {!showResults && !loading && (
+              <SearchResults
+                results={results}
+                highlight={debouncedQuery}
+                currentIndex={currentIndex}
+                setCurrentIndex={setCurrentIndex}
+                onSelect={(text) => {
+                  setQuery(text);
+                  setCurrentIndex(0);
+                  setShowResults(false);
+                }}
+              />
+            )}
+          </div>
         )}
 
         {results.length > 0 && query.trim() !== "" && (
