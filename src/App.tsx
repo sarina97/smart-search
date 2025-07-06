@@ -14,7 +14,9 @@ export default function App() {
   const debouncedQuery = useDebounce(query, 300);
   const [loading, setLoading] = useState(false);
   const results = useSearch(debouncedQuery);
+  const [isPWA, setIsPWA] = useState(false);
   const promptInstall = useInstallPrompt();
+
 
   useEffect(() => {
     if (query && query !== debouncedQuery) {
@@ -22,7 +24,9 @@ export default function App() {
     } else {
       setLoading(false);
     }
-  }, [query, debouncedQuery]);
+
+    setCurrentIndex(0);
+  }, [query, debouncedQuery, results]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -41,9 +45,14 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [results, currentIndex]);
 
+
   useEffect(() => {
-    setCurrentIndex(0);
-  }, [results]);
+    const standalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      // @ts-ignore
+      window.navigator.standalone === true;
+    setIsPWA(standalone);
+  }, []);
 
   return (
     <main
@@ -96,12 +105,14 @@ export default function App() {
         )}
       </div>
 
-      <button
-        onClick={promptInstall}
-        className="fixed bottom-14 right-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
-      >
-        نصب PWA
-      </button>
+      {!isPWA && (
+        <button
+          onClick={promptInstall}
+          className="fixed bottom-14 right-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-lg shadow-lg transition"
+        >
+          نصب PWA
+        </button>
+      )}
     </main>
   );
 }
