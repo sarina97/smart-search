@@ -38,7 +38,7 @@ export default function SearchResults({
   if (results.length === 0)
     return (
       <div className="text-center font-myfont mt-4 text-gray-500 font-medium">
-        نتیجه‌ای یافت نشد.
+        نتیجه‌ای یافت نشد
       </div>
     );
 

@@ -6,6 +6,7 @@ import { useSearch } from "./hooks/useSearch";
 import ScrollArrows from "./components/ScrollArrows";
 import Loader from "./components/Loader";
 import { useInstallPrompt } from "./hooks/useInstallPrompt";
+import checkIsPWA from "./function/checkIsPWA";
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -16,7 +17,6 @@ export default function App() {
   const results = useSearch(debouncedQuery);
   const [isPWA, setIsPWA] = useState(false);
   const promptInstall = useInstallPrompt();
-
 
   useEffect(() => {
     if (query && query !== debouncedQuery) {
@@ -45,13 +45,22 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [results, currentIndex]);
 
-
   useEffect(() => {
-    const standalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      // @ts-ignore
-      window.navigator.standalone === true;
+    const standalone = checkIsPWA();
     setIsPWA(standalone);
+
+    const handleAppInstalled = () => setIsPWA(true);
+    window.addEventListener("appinstalled", handleAppInstalled);
+    const handleFocus = () => {
+      const standalone = checkIsPWA();
+      setIsPWA(standalone);
+    };
+    window.addEventListener("focus", handleFocus);
+
+    return () => {
+      window.removeEventListener("appinstalled", handleAppInstalled);
+      window.removeEventListener("focus", handleFocus);
+    };
   }, []);
 
   return (
